@@ -1,9 +1,8 @@
 import 'package:flutique/config/theme/app_themes.dart';
-import 'package:flutique/feature/products/presentation/bloc/product_bloc.dart';
-import 'package:flutique/feature/products/presentation/page/products_page.dart';
+import 'package:flutique/core/router/app_router.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:go_router/go_router.dart';
 import 'injection_container.dart';
 
 void main() async {
@@ -17,14 +16,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: theme(),
-      home: BlocProvider(
-        create: (context) => sl<ProductBloc>(),
-        child: ProductsPage(),
-      ),
+      routerConfig: AppRouter.router,
     );
   }
 }
