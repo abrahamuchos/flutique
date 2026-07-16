@@ -1,3 +1,4 @@
+import 'package:flutique/config/theme/app_themes.dart';
 import 'package:flutique/feature/products/presentation/bloc/product_bloc.dart';
 import 'package:flutique/feature/products/presentation/page/products_page.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
+      theme: theme(),
       home: BlocProvider(
         create: (context) => sl<ProductBloc>(),
         child: ProductsPage(),
