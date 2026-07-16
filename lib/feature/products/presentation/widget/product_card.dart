@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutique/feature/products/domain/entities/product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutique/config/theme/app_colors.dart';
+import 'package:go_router/go_router.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -10,33 +11,41 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: CachedNetworkImage(
-              imageUrl: product.images!.first,
-              placeholder:
-                  (BuildContext context, String url) => Center(
-                    child: const CircularProgressIndicator(
-                      color: AppColors.turkey,
+    return GestureDetector(
+      onTap: () {
+        GoRouter.of(context).goNamed(
+          'product-detail',
+          pathParameters: {'id': product.id.toString()},
+        );
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: CachedNetworkImage(
+                imageUrl: product.images!.first,
+                placeholder:
+                    (BuildContext context, String url) => Center(
+                      child: const CircularProgressIndicator(
+                        color: AppColors.turkey,
+                      ),
                     ),
-                  ),
-              errorWidget:
-                  (BuildContext context, String url, Object error) =>
-                      const Icon(Icons.no_photography_outlined, size: 120),
+                errorWidget:
+                    (BuildContext context, String url, Object error) =>
+                        const Icon(Icons.no_photography_outlined, size: 120),
+              ),
             ),
-          ),
-          SizedBox(height: 10),
-          //Card Info
-          _buildCardInfo(product),
-        ],
+            SizedBox(height: 10),
+            //Card Info
+            _buildCardInfo(product),
+          ],
+        ),
       ),
     );
   }
