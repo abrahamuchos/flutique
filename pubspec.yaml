@@ -43,6 +43,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+  cached_network_image: ^3.4.1
 
 dev_dependencies:
   flutter_test:
@@ -95,9 +96,7 @@ flutter:
           weight: 300
         - asset: assets/fonts/lato/Lato/Lato-Bold.ttf
           weight: 700
-          style: bold
         - asset: assets/fonts/lato/Lato/Lato-Black.ttf
-          style: black
 
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package

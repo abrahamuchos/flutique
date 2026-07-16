@@ -1,4 +1,5 @@
 import 'package:flutique/feature/products/presentation/bloc/product_bloc.dart';
+import 'package:flutique/feature/products/presentation/widget/product_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,16 +28,22 @@ class _ProductPageState extends State<ProductsPage> {
           if (state is ProductLoading) {
             return Center(child: CupertinoActivityIndicator());
           } else if (state is ProductDone) {
-            return ListView.builder(
+            return GridView.builder(
+              padding: EdgeInsets.all(16),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                childAspectRatio: 0.65,
+              ),
               itemCount: state.products!.length,
-              itemBuilder: (context, index){
-                return Text(state.products![index].title);
+              itemBuilder: (context, index) {
+                return ProductCard(product: state.products![index]);
               },
             );
-          }else if(state is ProductError){
+          } else if (state is ProductError) {
             return Text('Error');
-
-          }else{
+          } else {
             return Text('Error');
           }
         },

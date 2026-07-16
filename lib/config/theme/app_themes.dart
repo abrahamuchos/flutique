@@ -6,6 +6,7 @@ ThemeData theme() {
     scaffoldBackgroundColor: AppColors.white,
     fontFamily: 'Lato',
     appBarTheme: appbarTheme(),
+    primaryColor: AppColors.turkey
   );
 }
 
