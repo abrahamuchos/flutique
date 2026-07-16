@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutique/core/usecases/no_params.dart';
 import 'package:flutique/feature/products/domain/entities/product.dart';
 import 'package:flutique/feature/products/domain/usecases/get_products.dart';
 import 'package:meta/meta.dart';
@@ -22,7 +23,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   ) async {
     emit(ProductLoading());
 
-    final result = await _getProductsUseCase();
+    final result = await _getProductsUseCase(const NoParams());
 
     result.fold(
       (left) {

@@ -27,4 +27,20 @@ class ProductRepositoryImp implements ProductRepository {
       return Left(ServerFailure('Failed to load products'));
     }
   }
+
+  @override
+  Future<Either<Failure, Product>> getProduct(String id) async {
+      try{
+        final httpResponse = await _productApiService.getProduct(id);
+
+        if (httpResponse.response.statusCode == HttpStatus.ok) {
+          return Right(httpResponse.data);
+        } else {
+          return Left(ServerFailure('Failed to load product'));
+        }
+
+      }on DioException catch(err){
+        return Left(ServerFailure('Failed to load product'));
+      }
+  }
 }
