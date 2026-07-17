@@ -10,4 +10,7 @@ abstract class ProductApiService{
 
   @GET('/products')
   Future<HttpResponse<List<ProductModel>>> getProducts();
+
+  @GET('/products/{id}')
+  Future<HttpResponse<ProductModel>> getProduct(@Path('id') String id);
 }
