@@ -19,25 +19,36 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Product Detail')),
-      body: BlocBuilder<ProductDetailCubit, ProductDetailState>(
-        builder: (context, state) {
-          if (state is ProductDetailLoading) {
-            return Center(
-              child: CircularProgressIndicator(color: AppColors.turkey),
-            );
-          } else if (state is ProductDetailLoaded) {
-            return _buildProduct(context, state.product);
-            // return Column(
-            //   children: [Text(state.product.title), Text(state.product.price.toStringAsFixed(2))],
-            // );
-          } else if (state is ProductDetailError) {
-            return Center(child: Text('Error'));
-          } else {
-            return Center(child: Text('Error'));
-          }
-        },
+      appBar: _buildAppBar(),
+      body: SingleChildScrollView(
+        child: BlocBuilder<ProductDetailCubit, ProductDetailState>(
+          builder: (context, state) {
+            if (state is ProductDetailLoading) {
+              return Center(
+                child: CircularProgressIndicator(color: AppColors.turkey),
+              );
+            } else if (state is ProductDetailLoaded) {
+              return _buildProduct(context, state.product);
+            } else if (state is ProductDetailError) {
+              return Center(child: Text('Error'));
+            } else {
+              return Center(child: Text('Error'));
+            }
+          },
+        ),
       ),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    return AppBar(
+
+        actions: [
+          IconButton(onPressed: (){}, icon: Icon(Icons.share)),
+          IconButton(onPressed: (){}, icon: Icon(Icons.favorite_border)),
+          IconButton(onPressed: (){}, icon: Icon(Icons.shopping_cart_outlined)),
+          SizedBox(width: 10,),
+        ],
     );
   }
 
@@ -45,6 +56,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        //Product Image
         CachedNetworkImage(
           imageUrl: product.images!.first,
           width: MediaQuery.of(context).size.width,
@@ -93,8 +105,58 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 15),
+              //CTA – Buttons
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 2.5,
+                    child: OutlinedButton(
+                      onPressed: () {},
+                      style: OutlinedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        foregroundColor: AppColors.primary,
+                        side: BorderSide(color: AppColors.primary),
+                      ),
+                      child: Text('Buy Now'),
+                    ),
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 2.5,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.primary,
+                        foregroundColor: Colors.white,
+                      ),
+                      child: Text('Add to cart'),
+                    ),
+                  ),
+                ],
+              ),
+
+              //Description and reviews etc
+              SizedBox(height: 20),
+              Text(
+                'Description',
+                style: TextStyle(
+                  color: AppColors.dark,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
+              ),
+              SizedBox(height: 5),
               Text(product.description, style: TextStyle(fontSize: 14)),
+              SizedBox(height: 15),
+              //Tags
+              Text(
+                'Tags',
+                style: TextStyle(
+                  color: AppColors.dark,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
+              ),
               SizedBox(height: 15),
               _buildTags(context, product),
             ],
