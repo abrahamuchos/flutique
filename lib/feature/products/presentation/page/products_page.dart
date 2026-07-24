@@ -3,6 +3,7 @@ import 'package:flutique/feature/products/presentation/widget/product_card.dart'
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class ProductsPage extends StatefulWidget {
   const ProductsPage({super.key});
@@ -22,7 +23,11 @@ class _ProductPageState extends State<ProductsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Products'), centerTitle: true),
+      appBar: AppBar(title: Text('Products'), centerTitle: true, actions: [
+        IconButton(onPressed: (){
+          context.goNamed('cart');
+        }, icon: Icon(Icons.shopping_cart))
+      ],),
       body: BlocBuilder<ProductBloc, ProductState>(
         builder: (context, state) {
           if (state is ProductLoading) {

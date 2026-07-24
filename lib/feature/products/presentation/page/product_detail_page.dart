@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutique/config/theme/app_colors.dart';
+import 'package:flutique/feature/cart/domain/entities/cart_item.dart';
+import 'package:flutique/feature/cart/presentation/bloc/cart_cubit.dart';
 import 'package:flutique/feature/products/domain/entities/product.dart';
 import 'package:flutique/feature/products/presentation/bloc/product_detail_bloc/product_detail_cubit.dart';
 import 'package:flutique/feature/products/presentation/widget/rating_info.dart';
@@ -42,13 +44,12 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
 
   AppBar _buildAppBar() {
     return AppBar(
-
-        actions: [
-          IconButton(onPressed: (){}, icon: Icon(Icons.share)),
-          IconButton(onPressed: (){}, icon: Icon(Icons.favorite_border)),
-          IconButton(onPressed: (){}, icon: Icon(Icons.shopping_cart_outlined)),
-          SizedBox(width: 10,),
-        ],
+      actions: [
+        IconButton(onPressed: () {}, icon: Icon(Icons.share)),
+        IconButton(onPressed: () {}, icon: Icon(Icons.favorite_border)),
+        IconButton(onPressed: () {}, icon: Icon(Icons.shopping_cart_outlined)),
+        SizedBox(width: 10),
+      ],
     );
   }
 
@@ -124,7 +125,16 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                   SizedBox(
                     width: MediaQuery.of(context).size.width / 2.5,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        context.read<CartCubit>().addItem(
+                          CartItem.fromProduct(product),
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('${product.title} added to cart'),
+                          ),
+                        );
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primary,
                         foregroundColor: Colors.white,
