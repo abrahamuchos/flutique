@@ -10,3 +10,7 @@ abstract class Failure {
 class ServerFailure extends Failure{
   ServerFailure([super.message = "Server Failure"]);
 }
+
+class CacheFailure extends Failure{
+  CacheFailure([super.message = "Cache Failure"]);
+}
