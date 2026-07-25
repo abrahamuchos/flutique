@@ -1,4 +1,4 @@
-import 'package:flutique/feature/cart/presentation/page/cart.dart';
+import 'package:flutique/feature/cart/presentation/page/cart_page.dart';
 import 'package:flutique/feature/products/domain/usecases/get_product_by_id.dart';
 import 'package:flutique/feature/products/presentation/bloc/product_bloc.dart';
 import 'package:flutique/feature/products/presentation/bloc/product_detail_bloc/product_detail_cubit.dart';

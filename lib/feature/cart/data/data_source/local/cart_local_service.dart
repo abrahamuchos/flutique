@@ -67,7 +67,7 @@ class CartLocalServiceImpl implements CartLocalService {
             title: existing.title,
             price: existing.price,
             thumbnail: existing.thumbnail,
-            qty: existing.qty + qty,
+            qty: qty,
           )
       );
     }
