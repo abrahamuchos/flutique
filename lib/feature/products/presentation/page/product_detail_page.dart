@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutique/config/theme/app_colors.dart';
 import 'package:flutique/feature/cart/domain/entities/cart_item.dart';
 import 'package:flutique/feature/cart/presentation/bloc/cart_cubit.dart';
+import 'package:flutique/feature/cart/presentation/widget/cart_icon_button.dart';
 import 'package:flutique/feature/products/domain/entities/product.dart';
 import 'package:flutique/feature/products/presentation/bloc/product_detail_bloc/product_detail_cubit.dart';
 import 'package:flutique/feature/products/presentation/widget/rating_info.dart';
@@ -47,7 +48,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
       actions: [
         IconButton(onPressed: () {}, icon: Icon(Icons.share)),
         IconButton(onPressed: () {}, icon: Icon(Icons.favorite_border)),
-        IconButton(onPressed: () {}, icon: Icon(Icons.shopping_cart_outlined)),
+        CartIconButton(),
         SizedBox(width: 10),
       ],
     );

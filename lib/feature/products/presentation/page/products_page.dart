@@ -1,3 +1,4 @@
+import 'package:flutique/feature/cart/presentation/widget/cart_icon_button.dart';
 import 'package:flutique/feature/products/presentation/bloc/product_bloc.dart';
 import 'package:flutique/feature/products/presentation/widget/product_card.dart';
 import 'package:flutter/cupertino.dart';
@@ -23,11 +24,11 @@ class _ProductPageState extends State<ProductsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Products'), centerTitle: true, actions: [
-        IconButton(onPressed: (){
-          context.goNamed('cart');
-        }, icon: Icon(Icons.shopping_cart))
-      ],),
+      appBar: AppBar(
+        title: Text('Products'),
+        centerTitle: true,
+        actions: [CartIconButton()],
+      ),
       body: BlocBuilder<ProductBloc, ProductState>(
         builder: (context, state) {
           if (state is ProductLoading) {
