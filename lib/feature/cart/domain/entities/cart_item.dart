@@ -24,6 +24,7 @@ class CartItem extends Equatable {
       productId: product.id,
       title: product.title,
       price: product.price,
+      thumbnail: product.thumbnail,
       qty: qty,
     );
   }
@@ -33,6 +34,7 @@ class CartItem extends Equatable {
       productId: productId,
       title: title,
       price: price,
+      thumbnail: thumbnail,
       qty: qty ?? this.qty,
     );
   }

@@ -33,11 +33,17 @@ class CartItemModel {
       productId: item.productId,
       title: item.title,
       price: item.price,
+      thumbnail: item.thumbnail,
       qty: item.qty,
     );
   }
 
   CartItem toEntity() {
-    return CartItem(productId: productId, title: title, price: price, qty: qty);
+    return CartItem(productId: productId,
+        title: title,
+        price: price,
+        thumbnail: thumbnail,
+        qty: qty,
+    );
   }
 }
