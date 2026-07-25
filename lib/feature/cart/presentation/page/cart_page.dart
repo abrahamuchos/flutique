@@ -13,7 +13,7 @@ class CartPage extends StatelessWidget {
     return BlocBuilder<CartCubit, CartState>(
       builder: (context, state) {
         int cantItems = 0;
-        if (state is CartLoaded) cantItems = state.items.length;
+        if (state is CartLoaded) cantItems = state.totalItems;
         return Scaffold(
           appBar: _buildAppBar(context, cantItems),
           body: _buildBody(context, state),
